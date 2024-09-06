@@ -9,13 +9,15 @@ export async function POST(
 
         await dbConnect();
 
-        const { nom, cp, ville, adresse } = await req.json();
+        const { nom, cp, ville, adresse, latitude, longitude } = await req.json();
 
         const poi = await poiModel.create({
             nom,
             cp,
             ville,
-            adresse
+            adresse,
+            latitude,
+            longitude
         });
 
         return NextResponse.json([poi]);
